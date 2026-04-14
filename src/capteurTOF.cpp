@@ -10,9 +10,9 @@ void initialiserCapteurTOF()
     pinMode(BROCHECAPTEURTOF1,INPUT);
     pinMode(BROCHEXSHUT1,OUTPUT);
 }
-void initialiserLiaisonI2C()
+void initiliserLiasonI2C()
 {
-    Wire.begin();
+    Wire.begin(8,9);
 }
 void initialiserBrocheXSHUT()
 {
@@ -29,4 +29,14 @@ void initialiserAdresseCapteur(int brocheXSHUT)
     while (1);
   }
   sensor1.setAddress(0x30);
+  sensor1.startContinuous(50);
+}
+int infoCapteur()
+{
+  return sensor1.read();
+}
+String traductionMessageCapteur(int ifoCapteur)
+{
+  Serial.println(ifoCapteur);
+
 }
